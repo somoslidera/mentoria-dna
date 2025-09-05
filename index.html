@@ -176,7 +176,7 @@
 
         /* Hero Section */
         #hero {
-            background-image: url('2.jpg');
+            background-image: url('main/images/foto-fundo.jpg');
             background-size: cover;
             background-position: center 30%;
             background-repeat: no-repeat;
@@ -593,7 +593,7 @@
 <body>
     <header>
         <div class="container">
-            <div class="logo"><img src="https://placehold.co/150x40/101416/FFFFFF?text=LOGO&font=poppins" alt="DNA da Alta Performance"></div>
+            <div class="logo"><img src="main/images/logo-menu.svg" alt="DNA da Alta Performance"></div>
             <nav>
                 <ul>
                     <li><a href="#hero">Início</a></li>
@@ -602,7 +602,7 @@
                     <li><a href="#about-mentor">A Mentora</a></li>
                     <li><a href="#contact">Contato</a></li>
                     <li><a href="#faq">FAQ</a></li>
-                    <li><a href="https://pay.kiwify.com.br/07l7Nsq" target="_blank" rel="noopener noreferrer" class="btn btn-nav">Comprar Mentoria</a></li>
+                    <li><a href="#final-cta" class="btn btn-nav">Comprar Mentoria</a></li>
                 </ul>
             </nav>
             <div class="hamburger">
@@ -619,10 +619,10 @@
                 <div class="hero-text">
                     <h1>DESPERTE A SUA ALTA PERFORMANCE</h1>
                     <p id="typing-text"></p>
-                    <a href="https://pay.kiwify.com.br/07l7Nsq" target="_blank" rel="noopener noreferrer" class="btn">Quero fazer parte</a>
+                    <a href="#final-cta" class="btn">Quero fazer parte</a>
                     <p class="scarcity-trigger">Vagas limitadas para a primeira turma!</p>
                     <div class="hero-client-logo">
-                        <img src="https://placehold.co/150x45/101416/FFFFFF?text=SEU+LOGO" alt="Logo de parceiro ou cliente">
+                        <img src="main/images/logo-cliente.png" alt="Logo de parceiro ou cliente">
                     </div>
                 </div>
             </div>
@@ -669,7 +669,7 @@
             <div class="container">
                 <div class="mentor-content">
                     <div class="mentor-image">
-                         <img src="https://placehold.co/300x300/D90D53/FFFFFF?text=Mentora" alt="Foto da Mentora Carol">
+                         <img src="main/images/foto-mentora.jpg" alt="Foto da Mentora Carol">
                     </div>
                     <div class="mentor-text">
                         <h2>Sobre a Mentora</h2>
@@ -751,7 +751,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-about">
-                    <img src="https://placehold.co/150x40/1A1F22/FFFFFF?text=LOGO&font=poppins" alt="DNA da Alta Performance" class="footer-logo">
+                    <img src="main/images/logo-rodape.svg" alt="DNA da Alta Performance" class="footer-logo">
                     <p>Transformando o seu negócio começando pela sua transformação.</p>
                 </div>
                 <div class="footer-links">
@@ -859,9 +859,8 @@
                 fetch(SCRIPT_URL, { method: 'POST', body: formData})
                 .then(response => {
                     if (response.ok) {
-                        formStatus.textContent = 'Mensagem enviada com sucesso!';
-                        formStatus.style.color = 'var(--secondary-color)';
-                        form.reset();
+                        // Redireciona para a página de obrigado
+                        window.location.href = 'obrigado.html';
                     } else {
                         throw new Error('Houve um problema com a resposta da rede.');
                     }
