@@ -176,7 +176,7 @@
 
         /* Hero Section */
         #hero {
-            background-image: url('/foto-fundo.jpg');
+            background-image: url('images/foto-fundo.jpg');
             background-size: cover;
             background-position: center 30%;
             background-repeat: no-repeat;
@@ -202,8 +202,7 @@
              max-width: 600px;
         }
 
-        #typing-text {
-            min-height: 120px;
+        #hero-intro-text {
             font-size: 1.2rem;
             margin: 0 0 30px 0;
             max-width: 100%;
@@ -575,6 +574,20 @@
                 flex-direction: column;
                 text-align: center;
             }
+
+            /* Correção Depoimentos Mobile */
+            .testimonial-slider-container {
+                padding: 40px 15px;
+            }
+            .testimonial p {
+                font-size: 1.1rem;
+            }
+            .slider-arrow {
+                width: 40px;
+                height: 40px;
+            }
+            .slider-arrow.prev { left: 5px; }
+            .slider-arrow.next { right: 5px; }
             
             .footer-content {
                 grid-template-columns: 1fr;
@@ -618,7 +631,7 @@
             <div class="container">
                 <div class="hero-text">
                     <h1>DESPERTE A SUA ALTA PERFORMANCE</h1>
-                    <p id="typing-text"></p>
+                    <p id="hero-intro-text">Permita-se transformar o seu negócio começando pela sua transformação. Nos próximos 3 meses, vamos construir juntas a sua mentalidade de alta performance para que você termine 2025 com a clareza e o plano de ação que a maioria só começa a pensar em janeiro.</p>
                     <a href="#final-cta" class="btn">Quero fazer parte</a>
                     <p class="scarcity-trigger">Vagas limitadas para a primeira turma!</p>
                     <div class="hero-client-logo">
@@ -779,19 +792,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             
-            // Efeito de digitação na seção Hero
-            const typingTextElement = document.getElementById('typing-text');
-            const textToType = "Permita-se transformar o seu negócio começando pela sua transformação. Nos próximos 3 meses, vamos construir juntas a sua mentalidade de alta performance para que você termine 2025 com a clareza e o plano de ação que a maioria só começa a pensar em janeiro.";
-            let index = 0;
-            
-            function type() {
-                if (index < textToType.length) {
-                    typingTextElement.innerHTML += textToType.charAt(index);
-                    index++;
-                    setTimeout(type, 25);
-                }
-            }
-            type();
+            // REMOVIDO: Efeito de digitação na seção Hero. O texto agora é estático no HTML.
 
             // Slider de Testimonials
             const slider = document.querySelector('.testimonial-slider');
@@ -804,15 +805,17 @@
                 slider.style.transform = `translateX(-${currentIndex * 100}%)`;
             }
 
-            nextBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % testimonials.length;
-                updateSliderPosition();
-            });
+            if(prevBtn && nextBtn) { // Garante que os botões existem
+                nextBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex + 1) % testimonials.length;
+                    updateSliderPosition();
+                });
 
-            prevBtn.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
-                updateSliderPosition();
-            });
+                prevBtn.addEventListener('click', () => {
+                    currentIndex = (currentIndex - 1 + testimonials.length) % testimonials.length;
+                    updateSliderPosition();
+                });
+            }
             
             // Header com fundo ao rolar a página
             const header = document.querySelector('header');
@@ -847,12 +850,18 @@
 
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
-                const SCRIPT_URL = ''; // <--- COLE SUA URL AQUI
+                
+                // ===================================================================
+                // IMPORTANTE: COLE A URL DE IMPLANTAÇÃO DO SEU SCRIPT DO GOOGLE AQUI
+                // ===================================================================
+                const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyrFC22O0gxNZL5u1S-N2YXnt3ES7Xbg0jcCopl_4FxanpbhXFHhP4Nt9DACnX0MvIJw/exec'; // <--- COLE SUA URL AQUI ENTRE AS ASPAS
+
                 if (SCRIPT_URL === '') {
                     formStatus.textContent = 'ERRO: A URL do script não foi configurada.';
                     formStatus.style.color = 'red';
                     return;
                 }
+                
                 const formData = new FormData(form);
                 formStatus.textContent = 'Enviando...';
                 formStatus.style.color = 'var(--text-color)';
